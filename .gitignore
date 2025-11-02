@@ -1,0 +1,80 @@
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+generated_plugin_registrant.dart
+
+# IntelliJ / Android Studio
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Android
+.gradle/
+local.properties
+**/android/**/captures/
+**/android/**/outputs/
+**/android/**/gradle-wrapper.jar
+**/android/**/GeneratedPluginRegistrant.java
+**/android/**/release/
+
+# iOS
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Podfile.lock
+**/ios/Runner.xcworkspace/
+**/ios/Flutter/ephemeral/
+
+# Web
+**/web/.dart_tool/
+**/web/build/
+
+# Linux
+**/linux/flutter/
+**/linux/.dart_tool/
+**/linux/build/
+
+# Windows
+**/windows/flutter/
+**/windows/.dart_tool/
+**/windows/build/
+
+# Fuchsia
+.fuchsia/
+
+# Other
+*.log
+*.tmp
+*.swp
+*.lock
+*.bak
+*.old
+
+# Firebase / secrets (se aplicável)
+google-services.json
+GoogleService-Info.plist
+
+# Environment / keys
+.env
+.env.*
