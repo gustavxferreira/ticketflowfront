@@ -1,37 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'routes.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
+class MyApp extends StatelessWidget {
+  final String initialRoute;
+  const MyApp({super.key, required this.initialRoute});
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TicketFlow Front',
+      navigatorKey: navigatorKey,
+      title: 'Sistema de Chamados',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
-        textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
-        scaffoldBackgroundColor: Colors.grey[50],
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-          filled: true,
-          fillColor: Colors.white,
-          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            padding: EdgeInsets.symmetric(vertical: 16),
-            textStyle: TextStyle(fontSize: 16),
-          ),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.transparent,
+        primaryColor: const Color(0xFF00A3E0),
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFF00A3E0),
+          secondary: Color(0xFF005F8A),
+          surface: Color(0xFF001F3F),
+          onPrimary: Colors.white,
+          onSecondary: Colors.white,
         ),
       ),
-      initialRoute: '/create',
+      initialRoute: initialRoute,
       routes: appRoutes,
     );
   }

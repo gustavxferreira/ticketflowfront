@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-enum Priority { Low, Medium, High }
+import 'package:ticketflowfront/enums/priority_enum.dart';
 
 class CalledCreateDTO {
   final String userEmail;
@@ -19,7 +18,7 @@ class CalledCreateDTO {
     required this.areaId,
     required this.categoryId,
     required this.subCategoryId,
-    this.priority = Priority.Low,
+    this.priority = Priority.low,
     this.evidencePath,
   });
 
