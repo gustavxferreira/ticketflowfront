@@ -1,15 +1,14 @@
-
-class MyTicketDTO {
+class TicketAdminDTO {
   final int id;
   final String areaName;
   final String categoryName;
   final String subcategoryName;
   final String calledSubject;
-  final String dateOpen;
-  final String? dateClosed; 
+  final DateTime dateOpen;
+  final DateTime? dateClosed;
   final String step;
 
-  MyTicketDTO({
+  TicketAdminDTO({
     required this.id,
     required this.areaName,
     required this.categoryName,
@@ -20,24 +19,16 @@ class MyTicketDTO {
     required this.step,
   });
 
-  factory MyTicketDTO.fromJson(Map<String, dynamic> json) {
-    return MyTicketDTO(
-      id: json['id'] ?? '',
+  factory TicketAdminDTO.fromJson(Map<String, dynamic> json) {
+    return TicketAdminDTO(
+      id: json['id'],
       areaName: json['areaName'] ?? '',
       categoryName: json['categoryName'] ?? '',
       subcategoryName: json['subcategoryName'] ?? '',
-      calledSubject: json['calledSubject'] ?? 'Sem assunto',
-      dateOpen: json['dateOpen'] ?? '',
-      dateClosed: json['dateClosed'], 
-      step: json['step'] ?? '',
+      calledSubject: json['calledSubject'] ?? '',
+      dateOpen: DateTime.parse(json['dateOpen']),
+      dateClosed: json['dateClosed'] != null ? DateTime.parse(json['dateClosed']) : null,
+      step: json['step'] ?? 'Em aberto',
     );
-  }
-  
-  DateTime get parsedDateOpen {
-    try {
-      return DateTime.parse(dateOpen);
-    } catch (e) {
-      return DateTime.now();
-    }
   }
 }

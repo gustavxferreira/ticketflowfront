@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../models/chamado.dart';
+import '/models/chamado.dart';
 
 class TicketUserDetailScreen extends StatelessWidget {
   final Chamado chamado;

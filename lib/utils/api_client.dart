@@ -10,7 +10,7 @@ class ApiClient {
   ApiClient()
     : dio = Dio(
         BaseOptions(
-          baseUrl: 'http://localhost:5233/api',
+          baseUrl: 'http://localhost:5000/api',
           connectTimeout: const Duration(seconds: 5),
           receiveTimeout: const Duration(seconds: 3),
           headers: {'Content-Type': 'application/json'},
@@ -32,7 +32,7 @@ class ApiClient {
           if (e.response?.statusCode == 401) {
             await storage.delete(key: 'jwt');
 
-            // Navegação global
+            
             WidgetsBinding.instance.addPostFrameCallback((_) {
               // Sempre checar se o Navigator está pronto
               if (navigatorKey.currentState?.mounted ?? false) {

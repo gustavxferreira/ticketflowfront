@@ -17,7 +17,7 @@ class _CreatePageState extends State<CreateScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  
+
   List<AreaDTO> areasFromApi = [];
   List<CategoryDTO> categoriesFromApi = [];
   List<SubcategoryDTO> subcategoriesFromApi = [];
@@ -340,9 +340,14 @@ class _CreatePageState extends State<CreateScreen> {
                       onPressed: _submit,
                       child: const Text(
                         'Criar Chamado',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
                       ),
                       style: ElevatedButton.styleFrom(
+                        
+                        foregroundColor: Colors.white,
+                    
                         padding: const EdgeInsets.symmetric(
                           horizontal: 30,
                           vertical: 15,

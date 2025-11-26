@@ -21,12 +21,6 @@ class _MyTicketsScreenState extends State<MyTicketsScreen> {
     _ticketsFuture = calledService.getMyTickets();
   }
 
-  final List<Map<String, String>> tickets = [
-    {"titulo": "Chamado 1 de Thaysa", "chamados": "1"},
-    {"titulo": "Em andamento", "chamados": "3"},
-    {"titulo": "Finalizados", "chamados": "15"},
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,14 +114,12 @@ class _MyTicketsScreenState extends State<MyTicketsScreen> {
           FutureBuilder<Result<List<MyTicketDTO>>>(
             future: _ticketsFuture,
             builder: (context, snapshot) {
-              // 1. ESTADO DE CARREGAMENTO (Spin)
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(color: Colors.white),
                 );
               }
 
-              // 2. ESTADO DE ERRO DE CONEXÃO
               if (snapshot.hasError) {
                 return const Center(
                   child: Text(
@@ -137,8 +129,6 @@ class _MyTicketsScreenState extends State<MyTicketsScreen> {
                 );
               }
 
-              // 3. TRATAMENTO DO SEU RESULT WRAPPER
-              // Verifica se veio dado e se o Result é de sucesso
               if (snapshot.hasData) {
                 final result = snapshot.data!;
 

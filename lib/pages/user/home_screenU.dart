@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart'; 
 
 class HomeScreenU extends StatefulWidget {
   const HomeScreenU({super.key});
@@ -33,6 +34,19 @@ class _HomeScreenUState extends State<HomeScreenU>
     super.dispose();
   }
 
+  
+  Future<void> _logout() async {
+    
+    const storage = FlutterSecureStorage();
+    
+    
+    await storage.delete(key: 'jwt');
+
+    
+    if (mounted) {
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    }
+  }
 
   Widget _glassCard({
     required IconData icon,
@@ -79,7 +93,6 @@ class _HomeScreenUState extends State<HomeScreenU>
             ),
             child: Row(
               children: [
-          
                 Container(
                   width: big ? 64 : 56,
                   height: big ? 64 : 56,
@@ -141,14 +154,14 @@ class _HomeScreenUState extends State<HomeScreenU>
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
+        
         leading: IconButton(
           icon: const Icon(Icons.logout, color: Colors.white),
-          onPressed: () => Navigator.pushReplacementNamed(context, '/login'),
+          onPressed: _logout, 
         ),
       ),
       body: Stack(
         children: [
-
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -177,14 +190,12 @@ class _HomeScreenUState extends State<HomeScreenU>
             child: Container(color: Colors.black.withOpacity(0.08)),
           ),
 
-
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-              
                   Row(
                     children: [
                       ScaleTransition(
@@ -226,7 +237,6 @@ class _HomeScreenUState extends State<HomeScreenU>
                   ),
                   const SizedBox(height: 24),
 
-              
                   _glassCard(
                     icon: Icons.add_task,
                     title: "Criar Chamado",
@@ -246,7 +256,6 @@ class _HomeScreenUState extends State<HomeScreenU>
 
                   const Spacer(),
 
-              
                   Center(
                     child: Opacity(
                       opacity: 0.8,

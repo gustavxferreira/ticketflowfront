@@ -1,6 +1,8 @@
 import 'package:ticketflowfront/dto/called_create_dto.dart';
 import 'package:ticketflowfront/dto/my_tickets_dto.dart';
+import 'package:ticketflowfront/dto/response/ticket_admin_dto.dart';
 import 'package:ticketflowfront/dto/response/created_called_dto.dart';
+import 'package:ticketflowfront/dto/response/ticket_detail_dto.dart';
 import 'package:ticketflowfront/utils/api_client.dart';
 import 'package:ticketflowfront/utils/result.dart';
 
@@ -19,17 +21,42 @@ class CalledService {
     final createdCalled = CreatedCalledDTO.fromJson(response.data);
     return Result.success(createdCalled);
   }
-  
+
   Future<Result<List<MyTicketDTO>>> getMyTickets() async {
     final response = await _api.get('/meus-chamados');
-    
+
     if (response.statusCode != 200) {
       return Result.failure('Failed to fetch my tickets');
     }
-    
+
     final List<dynamic> data = response.data;
 
     final tickets = data.map((json) => MyTicketDTO.fromJson(json)).toList();
     return Result.success(tickets);
+  }
+
+  Future<Result<List<TicketAdminDTO>>> getAllTickets() async {
+    final response = await _api.get('/chamados');
+
+    if (response.statusCode != 200) {
+      return Result.failure('Failed to fetch my tickets');
+    }
+
+    final List<TicketAdminDTO> tickets = response.data
+        .map<TicketAdminDTO>((json) => TicketAdminDTO.fromJson(json))
+        .toList();
+
+    return Result.success(tickets);
+  }
+
+  Future<Result<TicketDetailDTO>> getTicketById(int id) async {
+    final response = await _api.get('/chamados/$id');
+
+    if (response.statusCode != 200) {
+      return Result.failure('Failed to fetch ticket details');
+    }
+
+    final TicketDetailDTO ticket = TicketDetailDTO.fromJson(response.data);
+    return Result.success(ticket);
   }
 }
